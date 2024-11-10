@@ -1,30 +1,35 @@
+from aventureros import Guerrero, Mago, Ranger
+from misiones import Mision  # Importa desde misiones.py
+from exceptions import IDError, NombreMisionError
+
 class Gremio:
     def __init__(self):
         self.aventureros = []
         self.misiones = []
 
-    def registrar_aventurero(self, nombre, clase, id, puntos_habilidad, experiencia, dinero):
-        if clase.lower() == "guerrero":
-            from aventureros import Guerrero
-            nuevo_aventurero = Guerrero(nombre, id, puntos_habilidad, experiencia, dinero)
-        elif clase.lower() == "mago":
-            from aventureros import Mago
-            nuevo_aventurero = Mago(nombre, id, puntos_habilidad, experiencia, dinero)
-        elif clase.lower() == "ranger":
-            from aventureros import Ranger
-            nuevo_aventurero = Ranger(nombre, id, puntos_habilidad, experiencia, dinero)
-        else:
-            print("Clase de aventurero no válida.")
-            return
+    def registrar_aventurero(self, aventurero):
+        # Validación de ID único
+        if any(a.id == aventurero.id for a in self.aventureros):
+            raise IDError(f"El ID {aventurero.id} ya está en uso. Elija otro ID.")
+        self.aventureros.append(aventurero)
+        print(f"Aventurero {aventurero.nombre} registrado con éxito.")
 
-        self.aventureros.append(nuevo_aventurero)
-        print(f"Aventurero {nombre} registrado exitosamente.")
+    def registrar_mision(self, mision):
+        # Validación de nombre único para misiones
+        if any(m.nombre == mision.nombre for m in self.misiones):
+            raise NombreMisionError(f"El nombre de misión '{mision.nombre}' ya está en uso. Elija otro nombre.")
+        self.misiones.append(mision)
+        print(f"Misión {mision.nombre} registrada con éxito.")
 
-    def registrar_mision(self, nombre, rango, recompensa, es_grupal, cantidad_minima=None):
-        from mision import Mision
-        nueva_mision = Mision(nombre, rango, recompensa, es_grupal, cantidad_minima)
-        self.misiones.append(nueva_mision)
-        print(f"Misión {nombre} registrada exitosamente.")
+    def obtener_aventurero_por_id(self, id_aventurero):
+        return next((a for a in self.aventureros if a.id == id_aventurero), None)
 
-    def asignar_mision(self, nombre_mision, ids_aventureros):
-        print("Asignando misión...")
+    def obtener_mision_por_nombre(self, nombre_mision):
+        return next((m for m in self.misiones if m.nombre == nombre_mision), None)
+
+    def listar_aventureros(self):
+        return [str(aventurero) for aventurero in self.aventureros]
+
+    def listar_misiones(self):
+        return [str(mision) for mision in self.misiones]
+
