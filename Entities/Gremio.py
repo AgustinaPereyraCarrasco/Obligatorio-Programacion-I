@@ -1,5 +1,9 @@
-from aventureros import Guerrero, Mago, Ranger
-from misiones import Mision  # Importa desde misiones.py
+from aventureros import Aventurero
+from guerrero import Guerrero 
+from mago import Mago
+from ranger import Ranger
+from mascota import Mascota
+from misiones import Mision  
 from exceptions import IDError, NombreMisionError
 
 class Gremio:

@@ -1,9 +1,9 @@
-from gremio import Gremio 
+from Gremio import Gremio 
 from aventureros import Aventurero
-from Guerrero import Guerrero 
-from Mago import Mago
-from Ranger import Ranger
-from Mascota import Mascota
+from guerrero import Guerrero 
+from mago import Mago
+from ranger import Ranger
+from mascota import Mascota
 from misiones import Mision  
 from exceptions import ( 
     InvalidClassError, InvalidHabilidadError, InvalidExperienciaError, 
@@ -150,7 +150,7 @@ class Menu:
         except ValueError as e:
             print(f"Error: {e}")
 
-    def otras_consultas(self, aventureros, misiones):
+    def otras_consultas(self):
         while True:
             print("\n--- Otras Consultas ---")
             print("1. Ver Top 10 Aventureros con Más Misiones Resueltas")
@@ -161,31 +161,34 @@ class Menu:
             opcion = input("Seleccione una opción: ")
             
             if opcion == "1":
-                ver_top_aventureros_misiones()
+                self.ver_top_aventureros_misiones()
             elif opcion == "2":
-                ver_top_aventureros_habilidad()
+                self.ver_top_aventureros_habilidad()
             elif opcion == "3":
-                ver_top_misiones_recompensa()
+                self.ver_top_misiones_recompensa()
             elif opcion == "4":
                 print("Regresando al menú principal...")
                 break
             else:
                 print("Opción inválida. Por favor, intente de nuevo.")
-                
-    def ver_top_aventureros_misiones():
-        top_aventureros = sorted(self.aventureros, key=lambda a: (-a.misiones_resueltas, a.nombre))[:10]
-        return [f"{i+1}. {a.nombre} - Misiones Resueltas: {a.misiones_resueltas}" for i, a in enumerate(top_aventureros)]
 
-    def ver_top_aventureros_habilidad():
-        top_aventureros = sorted(self.aventureros, key=lambda a: (-a.calcular_habilidad_total(), a.experiencia))[:10]
-        return [f"{i+1}. {a.nombre} - Habilidad Total: {a.calcular_habilidad_total()}" for i, a in enumerate(top_aventureros)]
+    def ver_top_aventureros_misiones(self):
+       top_aventureros = sorted(self.gremio.aventureros, key=lambda a: (-a.misiones_completadas, a.nombre))[:10]
+       for i, a in enumerate(top_aventureros):
+            print(f"{i+1}. {a.nombre} - Misiones Resueltas: {a.misiones_completadas}")
 
-    def ver_top_misiones_recompensa():
-        top_misiones = sorted(self.misiones, key=lambda m: (-m.recompensa, m.nombre))[:5]
-        return [f"{i+1}. {m.nombre} - Recompensa: {m.recompensa}" for i, m in enumerate(top_misiones)]
+    def ver_top_aventureros_habilidad(self):
+        top_aventureros = sorted(self.gremio.aventureros, key=lambda a: (-a.calcular_habilidad_total(), a.experiencia))[:10]
+        for i, a in enumerate(top_aventureros):
+            print(f"{i+1}. {a.nombre} - Habilidad Total: {a.calcular_habilidad_total()}")
+
+    def ver_top_misiones_recompensa(self):
+        top_misiones = sorted(self.gremio.misiones, key=lambda m: (-m.recompensa, m.nombre))[:5]
+        for i, m in enumerate(top_misiones):
+            print(f"{i+1}. {m.nombre} - Recompensa: {m.recompensa}")
 
 if __name__ == "__main__":
-    from gremio import Gremio
+    from Gremio import Gremio
     gremio = Gremio()
     menu = Menu(gremio)
     menu.menu_principal()
