@@ -21,13 +21,13 @@ def otras_consultas(aventureros, misiones):
             print("Opción inválida. Por favor, intente de nuevo.")
 
 def ver_top_aventureros_misiones():
-    # Lógica para mostrar los 10 aventureros con más misiones completadas
-    pass
+    top_aventureros = sorted(self.aventureros, key=lambda a: (-a.misiones_resueltas, a.nombre))[:10]
+    return [f"{i+1}. {a.nombre} - Misiones Resueltas: {a.misiones_resueltas}" for i, a in enumerate(top_aventureros)]
 
 def ver_top_aventureros_habilidad():
-    # Lógica para mostrar los 10 aventureros con mayor habilidad total
-    pass
+    top_aventureros = sorted(self.aventureros, key=lambda a: (-a.calcular_habilidad_total(), a.experiencia))[:10]
+    return [f"{i+1}. {a.nombre} - Habilidad Total: {a.calcular_habilidad_total()}" for i, a in enumerate(top_aventureros)]
 
 def ver_top_misiones_recompensa():
-    # Lógica para mostrar las 5 misiones con mayor recompensa
-    pass
+    top_misiones = sorted(self.misiones, key=lambda m: (-m.recompensa, m.nombre))[:5]
+    return [f"{i+1}. {m.nombre} - Recompensa: {m.recompensa}" for i, m in enumerate(top_misiones)]
