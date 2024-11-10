@@ -1,10 +1,10 @@
-from Gremio import Gremio 
-from aventureros import Aventurero
-from guerrero import Guerrero 
-from mago import Mago
-from ranger import Ranger
-from mascota import Mascota
-from misiones import Mision  
+from Entities.Gremio import Gremio 
+from Entities.aventureros import Aventurero
+from Entities.guerrero import Guerrero 
+from Entities.mago import Mago
+from Entities.ranger import Ranger
+from Entities.mascota import Mascota
+from Entities.misiones import Mision  
 from exceptions import ( 
     InvalidClassError, InvalidHabilidadError, InvalidExperienciaError, 
     InvalidDineroError, InvalidFuerzaError, InvalidManaError, InvalidMascotaError, IDError, NombreMisionError, RangoMisionError
@@ -188,7 +188,7 @@ class Menu:
             print(f"{i+1}. {m.nombre} - Recompensa: {m.recompensa}")
 
 if __name__ == "__main__":
-    from Gremio import Gremio
+    from Entities.Gremio import Gremio
     gremio = Gremio()
     menu = Menu(gremio)
     menu.menu_principal()
