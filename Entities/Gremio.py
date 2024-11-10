@@ -1,9 +1,9 @@
-from Entities.aventureros import Aventurero
-from Entities.guerrero import Guerrero 
-from Entities.mago import Mago
-from Entities.ranger import Ranger
-from Entities.mascota import Mascota
-from Entities.misiones import Mision  
+from aventureros import Aventurero
+from guerrero import Guerrero 
+from mago import Mago
+from ranger import Ranger
+from mascota import Mascota
+from misiones import Mision  
 from exceptions import IDError, NombreMisionError
 
 class Gremio:
