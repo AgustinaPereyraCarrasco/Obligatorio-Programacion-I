@@ -1,4 +1,4 @@
-from aventureros import Aventurero
+from Entities.aventureros import Aventurero
 #Hereda las características comunes del aventurero
 class Guerrero(Aventurero):
     def __init__(self, nombre, id, puntos_habilidad, experiencia, dinero, fuerza, misiones_completadas=0):

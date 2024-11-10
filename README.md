@@ -3,7 +3,7 @@ En este obligatorio, se busca modelar y desarrollar un simulador de juegos tipo 
 
 # Ejecución del programa
 1. Clona este repositorio en tu máquina local
-2. Ejecuta el archivo principal (menú) desde la terminal
+2. Ejecuta el archivo principal (Main) desde la terminal
 3. Al iniciar el programa, verás el menú, cada opción te permitirá interactuar con el simulador:
 
     1. Registrar Aventurero: Agrega un nuevo aventurero al gremio.
