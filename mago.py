@@ -3,6 +3,8 @@ from aventureros import Aventurero  # Importa la clase abstracta base Aventurero
 class Mago(Aventurero):
     def __init__(self, nombre, id, puntos_habilidad, experiencia, dinero, mana):
         super().__init__(nombre, id, puntos_habilidad, experiencia, dinero)
+        if not (1 <= mana <= 1000):
+            raise ValueError("El mana debe estar entre 1 y 1000.")
         self.__mana = mana  # Atributo específico de Mago
 
     @property

@@ -13,6 +13,7 @@ class Aventurero: #Definición de la clase Aventurero
         self.__experiencia = experiencia
         self.__dinero = dinero
 
+
     # Métodos para acceder a los atributos privados
     @property
     def nombre(self):
@@ -57,3 +58,12 @@ class Aventurero: #Definición de la clase Aventurero
     @abstractmethod
     def calcular_habilidad_total(self):
         pass
+
+    def incrementar_dinero(self, cantidad):
+        self.dinero += cantidad
+
+    def incrementar_experiencia(self, cantidad):
+        self.experiencia += cantidad
+
+    def incrementar_misiones_completadas(self):
+        self.misiones_completadas += 1
