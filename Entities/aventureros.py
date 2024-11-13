@@ -1,9 +1,4 @@
-from abc import ABC, abstractmethod
-# La clase Aventurero es abstracta porque representa el concepto general de un aventurero,
-# sin los detalles específicos de cada tipo (Guerrero, Mago, Ranger). 
-
-# Define los atributos comunes como nombre, ID y experiencia, pero no debe instanciarse sola,
-# ya que siempre se requiere un tipo específico de aventurero.
+from abc import ABC
 
 class Aventurero:
     def __init__(self, nombre:str, id:int, puntos_habilidad:int, experiencia:int, dinero:float, misiones_completadas:int):

@@ -1,4 +1,4 @@
-from aventureros import Aventurero  # Importa la clase abstracta base Aventurero
+from .aventureros import Aventurero  # Importa la clase abstracta base Aventurero
 
 class Mago(Aventurero):
     def __init__(self, nombre, id, puntos_habilidad, experiencia, dinero, mana, misiones_completadas=0):
