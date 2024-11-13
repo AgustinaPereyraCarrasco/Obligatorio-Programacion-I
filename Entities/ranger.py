@@ -10,9 +10,20 @@ class Ranger(Aventurero):
     def mascota(self):
         return self.__mascota
 
-    def calcular_rango(self):
-        habilidad_total = self.puntos_habilidad + (self.__mascota.puntos_habilidad if self.__mascota else 0)
-        return habilidad_total // 20
-
     def calcular_habilidad_total(self):
         return self.puntos_habilidad + (self.__mascota.puntos_habilidad if self.__mascota else 0)
+    
+    def calcular_rango(self):
+        habilidad_total = self.calcular_habilidad_total()
+        match habilidad_total:
+            case _ if habilidad_total <= 20:
+                return 1
+            case _ if habilidad_total <= 40:
+                return 2
+            case _ if habilidad_total <= 60:
+                return 3
+            case _ if habilidad_total <= 80:
+                return 4
+            case _:
+                return 5
+            

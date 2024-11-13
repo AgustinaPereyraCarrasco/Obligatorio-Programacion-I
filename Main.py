@@ -189,17 +189,15 @@ class Menu:
             print(f"{i + 1}. {aventureros_ordenados[i].nombre} - Misiones Resueltas: {aventureros_ordenados[i].misiones_completadas}")
 
     def ver_top_aventureros_habilidad(self):
-        # Ordenar los aventureros por habilidad total (de mayor a menor) y por experiencia
+        # Ordenación por habilidad total y nombre
         aventureros_ordenados = self.gremio.aventureros[:]
-        # Ordenación manual por habilidad total y experiencia
         for i in range(len(aventureros_ordenados)):
             for j in range(i + 1, len(aventureros_ordenados)):
                 if aventureros_ordenados[i].calcular_habilidad_total() < aventureros_ordenados[j].calcular_habilidad_total():
                     aventureros_ordenados[i], aventureros_ordenados[j] = aventureros_ordenados[j], aventureros_ordenados[i]
                 elif aventureros_ordenados[i].calcular_habilidad_total() == aventureros_ordenados[j].calcular_habilidad_total():
-                    if aventureros_ordenados[i].experiencia < aventureros_ordenados[j].experiencia:
-                        aventureros_ordenados[i], aventureros_ordenados[j] = aventureros_ordenados[j], aventureros_ordenados[i]
-
+                        if aventureros_ordenados[i].nombre > aventureros_ordenados[j].nombre:
+                            aventureros_ordenados[i], aventureros_ordenados[j] = aventureros_ordenados[j], aventureros_ordenados[i]
         # Mostrar los 10 primeros
         print("\nTop 10 Aventureros con Mayor Habilidad Total:")
         for i in range(min(10, len(aventureros_ordenados))):
@@ -208,7 +206,6 @@ class Menu:
     def ver_top_misiones_recompensa(self):
         # Ordenar las misiones por recompensa (de mayor a menor) y por nombre
         misiones_ordenadas = self.gremio.misiones[:]
-        # Ordenación manual por recompensa
         for i in range(len(misiones_ordenadas)):
             for j in range(i + 1, len(misiones_ordenadas)):
                 if misiones_ordenadas[i].recompensa < misiones_ordenadas[j].recompensa:
