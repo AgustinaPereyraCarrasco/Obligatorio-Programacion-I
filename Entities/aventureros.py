@@ -1,6 +1,6 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
-class Aventurero:
+class Aventurero(ABC):
     def __init__(self, nombre:str, id:int, puntos_habilidad:int, experiencia:int, dinero:float, misiones_completadas:int):
         self.__nombre = nombre
         self.__id = id
@@ -44,6 +44,24 @@ class Aventurero:
     @property
     def misiones_completadas(self):
         return self.__misiones_completadas
+    
+    @abstractmethod
+    def calcular_habilidad_total(self):
+        pass
+
+    def calcular_rango(self):
+        habilidad_total = self.calcular_habilidad_total()
+        match habilidad_total:
+            case _ if habilidad_total <= 20:
+                return 1
+            case _ if habilidad_total <= 40:
+                return 2
+            case _ if habilidad_total <= 60:
+                return 3
+            case _ if habilidad_total <= 80:
+                return 4
+            case _:
+                return 5
 
     def incrementar_misiones_completadas(self):
         self.__misiones_completadas += 1
