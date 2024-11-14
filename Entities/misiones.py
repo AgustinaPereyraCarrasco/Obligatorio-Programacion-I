@@ -1,4 +1,4 @@
-from exceptions import RangoMisionError
+from Exceptions.exceptions import RangoMisionError
 
 class Mision:
     def __init__(self, nombre, recompensa, rango, tipo_mision, min_miembros=1):
