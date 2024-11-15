@@ -175,48 +175,67 @@ class Menu:
             print("2. Ver Top 10 Aventureros con Mayor Habilidad")
             print("3. Ver Top 5 Misiones con Mayor Recompensa")
             print("4. Volver al Menú Principal")
-    
+        
             opcion = input("Seleccione una opción: ")
-            while opcion not in ["1", "2", "3", "4"]:
-                print("Opción inválida. Por favor, intente de nuevo.")
-                opcion = input("Seleccione una opción: ")
-    
+        
             match opcion:
                 case "1":
-                    self.ver_top_aventureros_misiones()
+                   self.ver_top_aventureros_misiones()
                 case "2":
-                    self.ver_top_aventureros_habilidad()
+                   self.ver_top_aventureros_habilidad()
                 case "3":
-                    self.ver_top_misiones_recompensa()
+                   self.ver_top_misiones_recompensa()
                 case "4":
-                    return
+                    print("Regresando al menú principal...")
+                    break
+                case _:
+                    print("Opción inválida. Por favor, intente de nuevo.")
 
     def ver_top_aventureros_misiones(self):
-        top = self.gremio.obtener_top_aventureros_misiones()
-        # Ordenar aventureros según el número de misiones completadas
-        top_ordenado = sorted(top, key=lambda aventurero: aventurero.misiones_completadas, reverse=True)
+
+        aventureros_ordenados = self.gremio.aventureros[:]
+        for i in range(len(aventureros_ordenados)):
+            for j in range(i + 1, len(aventureros_ordenados)):
+                if aventureros_ordenados[i].misiones_completadas < aventureros_ordenados[j].misiones_completadas:
+                    aventureros_ordenados[i], aventureros_ordenados[j] = aventureros_ordenados[j], aventureros_ordenados[i]
+                elif aventureros_ordenados[i].misiones_completadas == aventureros_ordenados[j].misiones_completadas:
+                    if aventureros_ordenados[i].nombre > aventureros_ordenados[j].nombre:
+                        aventureros_ordenados[i], aventureros_ordenados[j] = aventureros_ordenados[j], aventureros_ordenados[i]
         
-        for rank, aventurero in enumerate(top_ordenado, start=1):
-            print(f"{rank}. {aventurero.nombre} - Misiones: {aventurero.misiones_completadas}")
+        print("\nTop 10 Aventureros con Más Misiones Resueltas:")
+        for i in range(min(10, len(aventureros_ordenados))):
+            print(f"{i + 1}. {aventureros_ordenados[i].nombre} - Misiones Resueltas: {aventureros_ordenados[i].misiones_completadas}")
 
     def ver_top_aventureros_habilidad(self):
-        top = self.gremio.obtener_top_aventureros_habilidad()
-        # Ordenar aventureros según la habilidad total
-        top_ordenado = sorted(top, key=lambda aventurero: aventurero.calcular_habilidad_total(), reverse=True)
+        aventureros_ordenados = self.gremio.aventureros[:]
+        for i in range(len(aventureros_ordenados)):
+            for j in range(i + 1, len(aventureros_ordenados)):
+                if aventureros_ordenados[i].calcular_habilidad_total() < aventureros_ordenados[j].calcular_habilidad_total():
+                    aventureros_ordenados[i], aventureros_ordenados[j] = aventureros_ordenados[j], aventureros_ordenados[i]
+                elif aventureros_ordenados[i].calcular_habilidad_total() == aventureros_ordenados[j].calcular_habilidad_total():
+                        if aventureros_ordenados[i].nombre > aventureros_ordenados[j].nombre:
+                            aventureros_ordenados[i], aventureros_ordenados[j] = aventureros_ordenados[j], aventureros_ordenados[i]
 
-        for rank, aventurero in enumerate(top_ordenado, start=1):
-            print(f"{rank}. {aventurero.nombre} - Habilidad Total: {aventurero.calcular_habilidad_total()}")
+        print("\nTop 10 Aventureros con Mayor Habilidad Total:")
+        for i in range(min(10, len(aventureros_ordenados))):
+            print(f"{i + 1}. {aventureros_ordenados[i].nombre} - Habilidad Total: {aventureros_ordenados[i].calcular_habilidad_total()}")
 
     def ver_top_misiones_recompensa(self):
-        top = self.gremio.obtener_top_misiones_recompensa()
-        # Ordenar misiones según la recompensa
-        top_ordenado = sorted(top, key=lambda mision: mision.recompensa, reverse=True)
+        misiones_ordenadas = self.gremio.misiones[:]
+        for i in range(len(misiones_ordenadas)):
+            for j in range(i + 1, len(misiones_ordenadas)):
+                if misiones_ordenadas[i].recompensa < misiones_ordenadas[j].recompensa:
+                    misiones_ordenadas[i], misiones_ordenadas[j] = misiones_ordenadas[j], misiones_ordenadas[i]
+                elif misiones_ordenadas[i].recompensa == misiones_ordenadas[j].recompensa:
+                    if misiones_ordenadas[i].nombre > misiones_ordenadas[j].nombre:
+                        misiones_ordenadas[i], misiones_ordenadas[j] = misiones_ordenadas[j], misiones_ordenadas[i]
 
-        for rank, mision in enumerate(top_ordenado, start=1):
-            print(f"{rank}. {mision.nombre} - Recompensa: {mision.recompensa}")
-
+        print("\nTop 5 Misiones con Mayor Recompensa:")
+        for i in range(min(5, len(misiones_ordenadas))):
+            print(f"{i + 1}. {misiones_ordenadas[i].nombre} - Recompensa: {misiones_ordenadas[i].recompensa}")
 
 if __name__ == "__main__":
     gremio = Gremio() 
     menu = Menu(gremio)
     menu.menu_principal()
+
