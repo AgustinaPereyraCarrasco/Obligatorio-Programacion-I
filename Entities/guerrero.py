@@ -3,8 +3,6 @@ from .aventureros import Aventurero
 class Guerrero(Aventurero):
     def __init__(self, nombre, id, puntos_habilidad, experiencia, dinero, fuerza, misiones_completadas=0):
         super().__init__(nombre, id, puntos_habilidad, experiencia, dinero, misiones_completadas)
-        if not (1 <= fuerza <= 100):
-            raise ValueError("La fuerza debe estar entre 1 y 100.")
         self.__fuerza = fuerza  # Atributo específico de Guerrero
 
     @property

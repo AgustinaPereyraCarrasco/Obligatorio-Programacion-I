@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 class Aventurero(ABC):
-    def __init__(self, nombre:str, id:int, puntos_habilidad:int, experiencia:int, dinero:float, misiones_completadas:int):
+    def __init__(self, nombre:str, id:int, puntos_habilidad:int, experiencia:int, dinero:float, misiones_completadas:0):
         self.__nombre = nombre
         self.__id = id
         self.__puntos_habilidad = puntos_habilidad
