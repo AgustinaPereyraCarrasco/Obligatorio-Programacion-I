@@ -183,13 +183,11 @@ class Menu:
                     if aventureros_ordenados[i].nombre > aventureros_ordenados[j].nombre:
                         aventureros_ordenados[i], aventureros_ordenados[j] = aventureros_ordenados[j], aventureros_ordenados[i]
         
-        # Mostrar los 10 primeros
         print("\nTop 10 Aventureros con Más Misiones Resueltas:")
         for i in range(min(10, len(aventureros_ordenados))):
             print(f"{i + 1}. {aventureros_ordenados[i].nombre} - Misiones Resueltas: {aventureros_ordenados[i].misiones_completadas}")
 
     def ver_top_aventureros_habilidad(self):
-        # Ordenación por habilidad total y nombre
         aventureros_ordenados = self.gremio.aventureros[:]
         for i in range(len(aventureros_ordenados)):
             for j in range(i + 1, len(aventureros_ordenados)):
@@ -198,13 +196,12 @@ class Menu:
                 elif aventureros_ordenados[i].calcular_habilidad_total() == aventureros_ordenados[j].calcular_habilidad_total():
                         if aventureros_ordenados[i].nombre > aventureros_ordenados[j].nombre:
                             aventureros_ordenados[i], aventureros_ordenados[j] = aventureros_ordenados[j], aventureros_ordenados[i]
-        # Mostrar los 10 primeros
+
         print("\nTop 10 Aventureros con Mayor Habilidad Total:")
         for i in range(min(10, len(aventureros_ordenados))):
             print(f"{i + 1}. {aventureros_ordenados[i].nombre} - Habilidad Total: {aventureros_ordenados[i].calcular_habilidad_total()}")
 
     def ver_top_misiones_recompensa(self):
-        # Ordenar las misiones por recompensa (de mayor a menor) y por nombre
         misiones_ordenadas = self.gremio.misiones[:]
         for i in range(len(misiones_ordenadas)):
             for j in range(i + 1, len(misiones_ordenadas)):
@@ -214,7 +211,6 @@ class Menu:
                     if misiones_ordenadas[i].nombre > misiones_ordenadas[j].nombre:
                         misiones_ordenadas[i], misiones_ordenadas[j] = misiones_ordenadas[j], misiones_ordenadas[i]
 
-        # Mostrar las 5 primeras
         print("\nTop 5 Misiones con Mayor Recompensa:")
         for i in range(min(5, len(misiones_ordenadas))):
             print(f"{i + 1}. {misiones_ordenadas[i].nombre} - Recompensa: {misiones_ordenadas[i].recompensa}")
