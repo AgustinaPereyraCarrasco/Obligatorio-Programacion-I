@@ -1,13 +1,13 @@
 from abc import ABC, abstractmethod
 
 class Aventurero(ABC):
-    def __init__(self, nombre:str, id:int, puntos_habilidad:int, experiencia:int, dinero:float, misiones_completadas:0):
+    def __init__(self, nombre:str, id:int, puntos_habilidad:int, experiencia:int, dinero:float, misiones_completadas:int):
         self.__nombre = nombre
         self.__id = id
         self.__puntos_habilidad = puntos_habilidad
         self.__experiencia = experiencia
         self.__dinero = dinero
-        self.__misiones_completadas = misiones_completadas
+        self.__misiones_completadas = misiones_completadas=0
 
 
     @property
@@ -64,7 +64,10 @@ class Aventurero(ABC):
                 return 5
 
     def incrementar_misiones_completadas(self):
-        self.__misiones_completadas += 1
+        if isinstance(self.__misiones_completadas, int):
+            self.__misiones_completadas += 1
+        else: 
+            print("Error: El contador de misiones no es un número entero.")
         
     def incrementar_dinero(self, cantidad):
         self.dinero += cantidad
