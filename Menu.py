@@ -193,17 +193,26 @@ class Menu:
 
     def ver_top_aventureros_misiones(self):
         top = self.gremio.obtener_top_aventureros_misiones()
-        for rank, aventurero in enumerate(top, start=1):
+        # Ordenar aventureros según el número de misiones completadas
+        top_ordenado = sorted(top, key=lambda aventurero: aventurero.misiones_completadas, reverse=True)
+        
+        for rank, aventurero in enumerate(top_ordenado, start=1):
             print(f"{rank}. {aventurero.nombre} - Misiones: {aventurero.misiones_completadas}")
 
     def ver_top_aventureros_habilidad(self):
         top = self.gremio.obtener_top_aventureros_habilidad()
-        for rank, aventurero in enumerate(top, start=1):
+        # Ordenar aventureros según la habilidad total
+        top_ordenado = sorted(top, key=lambda aventurero: aventurero.calcular_habilidad_total(), reverse=True)
+
+        for rank, aventurero in enumerate(top_ordenado, start=1):
             print(f"{rank}. {aventurero.nombre} - Habilidad Total: {aventurero.calcular_habilidad_total()}")
 
     def ver_top_misiones_recompensa(self):
         top = self.gremio.obtener_top_misiones_recompensa()
-        for rank, mision in enumerate(top, start=1):
+        # Ordenar misiones según la recompensa
+        top_ordenado = sorted(top, key=lambda mision: mision.recompensa, reverse=True)
+
+        for rank, mision in enumerate(top_ordenado, start=1):
             print(f"{rank}. {mision.nombre} - Recompensa: {mision.recompensa}")
 
 
